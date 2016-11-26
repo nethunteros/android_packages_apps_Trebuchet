@@ -28,7 +28,23 @@
         launcher:y="0"
         launcher:spanX="5"
         launcher:spanY="2" />
+     
+    <!-- Nethunter -->
+    <favorite
+        launcher:packageName="com.offsec.nethunter"
+        launcher:className="com.offsec.nethunter.AppNavHomeActivity"
+        launcher:screen="1"
+        launcher:x="0"
+        launcher:y="2" />
 
+     <!-- Nethunter Terminal -->
+     <favorite
+        launcher:packageName="com.offsec.nhterm"
+        launcher:className="com.offsec.nhterm.Term"
+        launcher:screen="1"
+        launcher:x="1"
+        launcher:y="2" />
+     
     <!-- Google Folder -->
     <folder launcher:screen="1" launcher:x="0" launcher:y="4" launcher:title="@string/google_title">
         <favorite
