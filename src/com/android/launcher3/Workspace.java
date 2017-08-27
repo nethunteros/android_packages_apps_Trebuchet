@@ -69,12 +69,12 @@ import com.android.launcher3.accessibility.LauncherAccessibilityDelegate;
 import com.android.launcher3.accessibility.LauncherAccessibilityDelegate.AccessibilityDragSource;
 import com.android.launcher3.accessibility.OverviewScreenAccessibilityDelegate;
 import com.android.launcher3.compat.UserHandleCompat;
-import com.android.launcher3.settings.SettingsProvider;
 import com.android.launcher3.util.LongArrayMap;
 import com.android.launcher3.util.Thunk;
 import com.android.launcher3.util.WallpaperUtils;
 import com.android.launcher3.widget.PendingAddShortcutInfo;
 import com.android.launcher3.widget.PendingAddWidgetInfo;
+import com.cyanogenmod.trebuchet.settings.SettingsProvider;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -1536,8 +1536,9 @@ public class Workspace extends PagedView
             scheduleUpdate();
             mFinalOffset = Math.max(0f, Math.min(x, 1.0f));
             if (getNumScreensExcludingEmptyAndCustom() != mNumScreens) {
-                if (mNumScreens > 0) {
-                    // Don't animate if we're going from 0 screens
+                if (mNumScreens > 0 && Float.compare(mCurrentOffset, mFinalOffset) != 0) {
+                    // Don't animate if we're going from 0 screens, or if the final offset is the same
+                    // as the current offset
                     animateToFinal();
                 }
                 mNumScreens = getNumScreensExcludingEmptyAndCustom();

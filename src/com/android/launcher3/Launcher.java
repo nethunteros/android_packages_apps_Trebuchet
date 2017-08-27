@@ -113,7 +113,6 @@ import com.android.launcher3.compat.UserHandleCompat;
 import com.android.launcher3.compat.UserManagerCompat;
 import com.android.launcher3.list.SettingsPinnedHeaderAdapter;
 import com.android.launcher3.model.WidgetsModel;
-import com.android.launcher3.settings.SettingsProvider;
 import com.android.launcher3.stats.LauncherStats;
 import com.android.launcher3.util.ComponentKey;
 import com.android.launcher3.util.LongArrayMap;
@@ -122,6 +121,7 @@ import com.android.launcher3.util.Thunk;
 import com.android.launcher3.widget.PendingAddWidgetInfo;
 import com.android.launcher3.widget.WidgetHostViewLoader;
 import com.android.launcher3.widget.WidgetsContainerView;
+import com.cyanogenmod.trebuchet.settings.SettingsProvider;
 
 import java.io.File;
 import java.io.FileDescriptor;
@@ -2384,7 +2384,7 @@ public class Launcher extends Activity
 
             final View v = getWindow().peekDecorView();
             if (v != null && v.getWindowToken() != null) {
-                InputMethodManager imm = (InputMethodManager)getSystemService(
+                InputMethodManager imm = (InputMethodManager) getSystemService(
                         INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
             }
@@ -2419,7 +2419,9 @@ public class Launcher extends Activity
                 mWorkspace.post(new Runnable() {
                     @Override
                     public void run() {
-                        mWorkspace.moveToDefaultScreen(true);
+                        if (mWorkspace != null) {
+                            mWorkspace.moveToDefaultScreen(true);
+                        }
                     }
                 });
             }
